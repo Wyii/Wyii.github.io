@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="John Doe">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="【LeetCode】Keyboard Row"/>
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="WENYI"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>【LeetCode】Keyboard Row - WENYI</title>
+
+
+  <link rel="shortcut icon" href="/images/my_site_logo.png">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="/images/my_site_logo.png" alt="WENYI" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  archive
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            【LeetCode】Keyboard Row
+            
+          </h1>
+          <p class="posted-on">
+          2017-03-07
+          </p>
+          <div class="tags-links">
+            
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h1 id="Keyboard-Row"><a href="#Keyboard-Row" class="headerlink" title="Keyboard Row"></a>Keyboard Row</h1><p>Given a List of words, return the words that can be typed using letters of <strong>alphabet</strong> on only one row’s of American keyboard like the image below.</p>
+<p><img src="https://leetcode.com/static/images/problemset/keyboard.png" alt="American keyboard"></p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: [&quot;Hello&quot;, &quot;Alaska&quot;, &quot;Dad&quot;, &quot;Peace&quot;]</div><div class="line">Output: [&quot;Alaska&quot;, &quot;Dad&quot;]</div></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li>You may use one character in the keyboard more than once.</li>
+<li>You may assume the input string will only contain letters of alphabet.</li>
+</ol>
+<h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><p>讨论区中一个比较便于理解的是构建三个set，然后依次便利数组中的每个单词。</p>
+<p>关键点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">char[] charArray = word.toLowerCase().toCharArray();</div><div class="line">...</div><div class="line">return result.toArray(new String[result.size()]);</div></pre></td></tr></table></figure>
+<p>以下是一个比较暴力的解法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> String[] findWords(String[] words) &#123;</div><div class="line">    <span class="keyword">return</span> Stream.of(words).filter(s -&gt; s.toLowerCase().matches(<span class="string">"[qwertyuiop]*|[asdfghjkl]*|[zxcvbnm]*"</span>)).toArray(String[]::<span class="keyword">new</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>用到的主要是java8的stream特性，没有太多需要解释的。只是”String[]::new is a syntax sugar for the lambda expression size -&gt; new String[size]”需要知道一下。</p>
+<p>一下几个网站对Stream有比较详细的说明，还没来得及看，先mark了：</p>
+<p><a href="http://colobu.com/2016/03/02/Java-Stream/" target="_blank" rel="external">http://colobu.com/2016/03/02/Java-Stream/</a></p>
+<p><a href="https://www.ibm.com/developerworks/cn/java/j-lo-java8streamapi/" target="_blank" rel="external">https://www.ibm.com/developerworks/cn/java/j-lo-java8streamapi/</a></p>
+<p><a href="http://ifeve.com/stream/" target="_blank" rel="external">http://ifeve.com/stream/</a></p>
+<p>不过一下方法实在是快了20~30倍：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> String[] findWords(String[] words) &#123;</div><div class="line">        Set&lt;Character&gt; row1 = <span class="keyword">new</span> HashSet&lt;&gt;();</div><div class="line">        Set&lt;Character&gt; row2 = <span class="keyword">new</span> HashSet&lt;&gt;();</div><div class="line">        Set&lt;Character&gt; row3 = <span class="keyword">new</span> HashSet&lt;&gt;();</div><div class="line">        </div><div class="line">        row1.add(<span class="string">'q'</span>);</div><div class="line">        row1.add(<span class="string">'w'</span>);</div><div class="line">        row1.add(<span class="string">'e'</span>);</div><div class="line">        row1.add(<span class="string">'r'</span>);</div><div class="line">        row1.add(<span class="string">'t'</span>);</div><div class="line">        row1.add(<span class="string">'y'</span>);</div><div class="line">        row1.add(<span class="string">'u'</span>);</div><div class="line">        row1.add(<span class="string">'i'</span>);</div><div class="line">        row1.add(<span class="string">'o'</span>);</div><div class="line">        row1.add(<span class="string">'p'</span>);</div><div class="line">        </div><div class="line">        row2.add(<span class="string">'a'</span>);</div><div class="line">        row2.add(<span class="string">'s'</span>);</div><div class="line">        row2.add(<span class="string">'d'</span>);</div><div class="line">        row2.add(<span class="string">'f'</span>);</div><div class="line">        row2.add(<span class="string">'g'</span>);</div><div class="line">        row2.add(<span class="string">'h'</span>);</div><div class="line">        row2.add(<span class="string">'j'</span>);</div><div class="line">        row2.add(<span class="string">'k'</span>);</div><div class="line">        row2.add(<span class="string">'l'</span>);</div><div class="line">        </div><div class="line">        row3.add(<span class="string">'z'</span>);</div><div class="line">        row3.add(<span class="string">'x'</span>);</div><div class="line">        row3.add(<span class="string">'c'</span>);</div><div class="line">        row3.add(<span class="string">'v'</span>);</div><div class="line">        row3.add(<span class="string">'b'</span>);</div><div class="line">        row3.add(<span class="string">'n'</span>);</div><div class="line">        row3.add(<span class="string">'m'</span>);</div><div class="line">        </div><div class="line">        List&lt;String&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        </div><div class="line">        <span class="keyword">for</span>(String word : words)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">char</span>[] charArray = word.toLowerCase().toCharArray();</div><div class="line">        </div><div class="line">            <span class="keyword">int</span> lenOfWord = charArray.length;</div><div class="line">            </div><div class="line">            <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">            </div><div class="line">            <span class="keyword">for</span>(Character ch : charArray)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">if</span>(row1.contains(ch))</div><div class="line">                    count++;</div><div class="line">               <span class="keyword">else</span> </div><div class="line">                   <span class="keyword">break</span>;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(count == lenOfWord)</div><div class="line">            &#123;</div><div class="line">                result.add(word);</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            count = <span class="number">0</span>;</div><div class="line">            </div><div class="line">            <span class="keyword">for</span>(Character ch : charArray)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">if</span>(row2.contains(ch))</div><div class="line">                    count++;</div><div class="line">               <span class="keyword">else</span> </div><div class="line">                   <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(count == lenOfWord)</div><div class="line">            &#123;</div><div class="line">                result.add(word);</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            count = <span class="number">0</span>;</div><div class="line">            </div><div class="line">            <span class="keyword">for</span>(Character ch : charArray)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">if</span>(row3.contains(ch))</div><div class="line">                    count++;</div><div class="line">               <span class="keyword">else</span> </div><div class="line">                   <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(count == lenOfWord)</div><div class="line">            &#123;</div><div class="line">                result.add(word);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result.toArray(<span class="keyword">new</span> String[result.size()]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+</section>
+
+
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+      
+        <div class="nav-next">
+          <a href="/2017/03/06/【leetCode】Number-Complement/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">关于本站</h1>
+        <div class="custom-widget-content">
+          
+          <ul><li><a href="">我是WENYI，想做一条自由自在的咸鱼</a></li></ul>
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/Wyii" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="http://weibo.com/p/1005052000969813" class="icon icon-weibo" target="_blank">weibo</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onSubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>WENYI &copy; 2017</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>
